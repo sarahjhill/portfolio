@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah Hill — Full-Stack AI Developer</title>
+<meta name="description" content="Sarah Hill: full-stack AI developer working in Python, Django and JavaScript, with hands-on hackathon experience. Software with a human pulse, not corporate jargon.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230a0a0c'/%3E%3Ctext x='32' y='46' font-family='-apple-system,Helvetica,Arial,sans-serif' font-size='38' font-weight='800' fill='%23ff3b1f' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Dragon Fire Design brand tokens — matched to sarahjhill.com / Dragon Fire Design */
+    --bg:#0a0a0c;
+    --bg-soft:#141419;
+    --card:#1c1c22;
+    --line:rgba(255,255,255,.08);
+    --ink:#f4f6f8;
+    --ink-dim:#8b8b95;
+    --flame-1:#ff3b1f;
+    --flame-2:#ffb020;
+    --teal:#ffb020;
+    --teal-dim:rgba(255,176,32,.14);
+    color-scheme: dark;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display-font{
+    font-family:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+    letter-spacing:-0.01em;
+  }
+  a{ color:var(--teal); }
+  a:hover{ color:var(--flame-2); }
+
+  ::selection{ background:var(--flame-1); color:#0a0a0c; }
+
+  /* Skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--flame-1); color:#0a0a0c;
+    padding:.75rem 1.25rem; z-index:2000; font-weight:700; border-radius:0 0 .5rem 0;
+  }
+  .skip-link:focus{ left:0; }
+
+  /* Nav */
+  .navbar{
+    background:rgba(11,15,20,.85)!important;
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-brand{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--ink);
+    display:flex; flex-direction:column; line-height:1.15;
+  }
+  .navbar-brand:hover{ color:var(--ink); }
+  .brand-flame{ color:var(--flame-1); }
+  .brand-sub{
+    font-style:normal; font-family:'Inter',sans-serif;
+    font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--flame-2);
+  }
+  .nav-link{
+    color:var(--ink-dim)!important;
+    font-weight:500;
+    position:relative;
+    margin:0 .35rem;
+  }
+  .nav-link::after{
+    content:'';
+    position:absolute; left:0; bottom:2px; width:0; height:2px;
+    background:linear-gradient(90deg,var(--flame-1),var(--flame-2));
+    transition:width .2s ease;
+  }
+  .nav-link:hover{ color:var(--ink)!important; }
+  .nav-link:hover::after{ width:100%; }
+  .btn-flame{
+    background:linear-gradient(90deg,var(--flame-1),var(--flame-2));
+    color:#0a0a0c; font-weight:700; border:0;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-flame:hover{
+    color:#0a0a0c;
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px -10px rgba(255,59,31,.6);
+  }
+  .btn-outline-teal{
+    border:1.5px solid var(--teal); color:var(--teal); font-weight:600;
+    background:transparent;
+  }
+  .btn-outline-teal:hover{ background:var(--teal-dim); color:var(--teal); }
+
+  /* Hero */
+  .hero{
+    padding:9.5rem 0 6rem;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(60% 50% at 85% 0%, rgba(255,59,31,.16) 0%, rgba(255,59,31,0) 60%),
+      radial-gradient(45% 40% at 10% 20%, rgba(255,176,32,.12) 0%, rgba(255,176,32,0) 60%);
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.5rem;
+    text-transform:uppercase; letter-spacing:.14em; font-size:.75rem; font-weight:700;
+    color:var(--teal); background:var(--teal-dim);
+    border:1px solid rgba(255,176,32,.3);
+    padding:.4rem .9rem; border-radius:999px;
+  }
+  .eyebrow .pulse{
+    width:7px; height:7px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 rgba(255,176,32,.6); animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(255,176,32,.6); }
+    70%{ box-shadow:0 0 0 10px rgba(255,176,32,0); }
+    100%{ box-shadow:0 0 0 0 rgba(255,176,32,0); }
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.2rem);
+    font-weight:700;
+    line-height:1.05;
+    margin:1.25rem 0 1.25rem;
+  }
+  .hero .accent{
+    background:linear-gradient(90deg,var(--flame-1),var(--flame-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .lede{ font-size:1.15rem; color:var(--ink-dim); max-width:640px; }
+  .hero-stack-strip{ display:flex; flex-wrap:wrap; gap:.6rem; }
+  .stack-pill{
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-size:.8rem; font-weight:600; color:var(--ink-dim);
+    background:var(--card); border:1px solid var(--line);
+    padding:.4rem .8rem; border-radius:999px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .stack-pill:hover{ border-color:rgba(255,59,31,.4); color:var(--ink); }
+  .stack-pill i{ color:var(--flame-2); }
+  .hero-stats{ gap:2.25rem; }
+  .hero-stats .num{ font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; color:var(--ink); }
+  .hero-stats .label{ font-size:.8rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; }
+
+  section{ padding:5.5rem 0; }
+  .section-eyebrow{
+    text-transform:uppercase; letter-spacing:.14em; font-size:.78rem; font-weight:700; color:var(--flame-1);
+  }
+  .section-title{ font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; margin:.5rem 0 1rem; }
+  .section-lede{ color:var(--ink-dim); max-width:640px; }
+
+  .band-soft{ background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+  /* Cards */
+  .card-dark{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:1rem;
+    padding:2rem;
+    height:100%;
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .card-dark:hover{
+    transform:translateY(-4px);
+    border-color:rgba(255,59,31,.4);
+    box-shadow:0 20px 40px -20px rgba(0,0,0,.6);
+  }
+  .icon-tile{
+    width:52px; height:52px; border-radius:.85rem;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(255,59,31,.18), rgba(255,176,32,.12));
+    color:var(--flame-2); font-size:1.4rem; margin-bottom:1.1rem;
+  }
+  .badge-tech{
+    display:inline-block; font-size:.75rem; font-weight:600;
+    color:var(--teal); background:var(--teal-dim);
+    border:1px solid rgba(255,176,32,.25);
+    padding:.28rem .65rem; border-radius:999px; margin:.2rem .35rem .2rem 0;
+  }
+
+  /* Dragon Fire Design tie-in */
+  .df-mark{
+    flex:none; width:44px; height:44px; border-radius:.6rem;
+    background:var(--bg); border:1px solid rgba(255,59,31,.4);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.4rem;
+    color:var(--flame-1);
+  }
+  .dragonfire-card{ border-color:rgba(255,59,31,.3); }
+  .dragonfire-card:hover{ border-color:rgba(255,59,31,.55); }
+  .ember-quote{
+    font-family:'Space Grotesk',sans-serif; font-size:1.02rem;
+    color:var(--ink); border-left:2px solid var(--flame-1);
+    padding-left:.85rem; margin-bottom:1rem;
+  }
+  .ember-quote strong{ color:var(--flame-2); }
+
+  /* Project cards */
+  .project-card{
+    background:var(--card); border:1px solid var(--line); border-radius:1.1rem;
+    overflow:hidden; height:100%; display:flex; flex-direction:column;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .project-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 24px 50px -24px rgba(0,0,0,.65);
+    border-color:rgba(255,176,32,.4);
+  }
+  .project-top{
+    padding:1.75rem 1.75rem 0;
+  }
+  .project-tag{
+    font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--flame-2);
+  }
+  .project-body{ padding:1rem 1.75rem 1.75rem; flex:1; display:flex; flex-direction:column; }
+  .project-body p{ color:var(--ink-dim); }
+  .project-link{
+    margin-top:auto; font-weight:700; display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .project-link i{ transition:transform .15s ease; }
+  .project-link:hover i{ transform:translateX(4px); }
+
+  /* Timeline */
+  .timeline{ position:relative; padding-left:2.25rem; }
+  .timeline::before{
+    content:''; position:absolute; left:7px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(180deg,var(--flame-1),var(--teal));
+  }
+  .timeline-item{ position:relative; padding-bottom:2.5rem; }
+  .timeline-item:last-child{ padding-bottom:0; }
+  .timeline-item::before{
+    content:''; position:absolute; left:-2.25rem; top:5px; width:16px; height:16px;
+    border-radius:50%; background:var(--bg); border:3px solid var(--flame-1);
+  }
+  .timeline-item .meta{ color:var(--ink-dim); font-size:.85rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  .timeline-item h4{ margin:.3rem 0 .25rem; font-size:1.15rem; }
+  .timeline-item .org{ color:var(--teal); font-weight:600; margin-bottom:.5rem; display:block; }
+  .timeline-item p{ color:var(--ink-dim); margin:0; }
+
+  /* Reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* CTA */
+  .cta{
+    background:linear-gradient(135deg, rgba(255,59,31,.14), rgba(255,176,32,.1));
+    border:1px solid var(--line);
+    border-radius:1.5rem;
+    padding:3.5rem 2.5rem;
+    text-align:center;
+  }
+  .cta h2{ font-size:clamp(1.75rem,3.4vw,2.6rem); font-weight:700; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:2.5rem 0;
+    color:var(--ink-dim);
+    font-size:.9rem;
+  }
+  footer a{ color:var(--ink-dim); }
+  footer a:hover{ color:var(--flame-2); }
+  .footer-df{ color:var(--ink-dim); }
+  .footer-df a{ text-decoration:underline; text-underline-offset:2px; }
+  .social-icon{
+    width:38px; height:38px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:1px solid var(--line); color:var(--ink-dim);
+    transition:all .2s ease;
+  }
+  .social-icon:hover{ border-color:var(--flame-1); color:var(--flame-2); transform:translateY(-3px); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .eyebrow .pulse{ animation:none; }
+  }
+
+  /* Project thumbnails */
+  .project-thumb{
+    position:relative; overflow:hidden; aspect-ratio:16/10;
+    background:var(--bg-soft);
+  }
+  .project-thumb img{
+    width:100%; height:100%; object-fit:cover; object-position:top;
+    display:block;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    filter:saturate(.92);
+  }
+  .project-card:hover .project-thumb img{
+    transform:scale(1.06);
+    filter:saturate(1.05);
+  }
+  .project-thumb::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,15,20,0) 55%, rgba(11,15,20,.85) 100%);
+    pointer-events:none;
+  }
+  .project-thumb.thumb-pending{
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--bg-soft), var(--card));
+    border-bottom:1px dashed var(--line);
+  }
+  .thumb-pending-inner{
+    display:flex; align-items:center; gap:.5rem;
+    color:var(--ink-dim); font-size:.82rem; font-weight:600;
+  }
+  .thumb-pending-inner i{ color:var(--flame-2); font-size:1.1rem; }
+  .gallery-pending{
+    display:flex; align-items:center; justify-content:center; gap:.6rem;
+    border:1px dashed var(--line); border-radius:.7rem;
+    padding:2rem; color:var(--ink-dim); font-size:.9rem; text-align:center;
+  }
+  .gallery-pending i{ color:var(--flame-2); font-size:1.3rem; }
+  .project-thumb .thumb-badge{
+    position:absolute; top:.85rem; left:.85rem; z-index:2;
+    font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em;
+    background:rgba(11,15,20,.72); backdrop-filter:blur(6px);
+    color:var(--teal); border:1px solid rgba(255,176,32,.35);
+    padding:.3rem .65rem; border-radius:999px;
+  }
+
+  .btn-case{
+    background:transparent; border:0; padding:0;
+    color:var(--teal); font-weight:700;
+    display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .btn-case:hover{ color:var(--flame-2); }
+  .btn-case i{ transition:transform .15s ease; }
+  .btn-case:hover i{ transform:translateX(4px); }
+
+  /* Case study modal */
+  .modal-case .modal-dialog{
+    max-width:960px;
+  }
+  .modal-case .modal-content{
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:1.1rem;
+    overflow:hidden;
+  }
+  .modal-case.fade .modal-dialog{
+    transform:scale(.92) translateY(20px);
+    transition:transform .32s cubic-bezier(.2,.9,.25,1.2), opacity .28s ease;
+  }
+  .modal-case.show .modal-dialog{
+    transform:scale(1) translateY(0);
+  }
+  .modal-case .modal-header{
+    border-bottom:1px solid var(--line);
+    padding:1.5rem 1.75rem;
+  }
+  .modal-case .modal-body{ padding:0; }
+  .modal-case .modal-hero{
+    aspect-ratio:16/7.5; overflow:hidden; position:relative;
+    background:var(--card);
+  }
+  .modal-case .modal-hero img{
+    width:100%; height:100%; object-fit:cover; object-position:top;
+  }
+  .case-tag{
+    font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--flame-2);
+  }
+  .modal-case .modal-title-main{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.5rem; margin:.2rem 0 0;
+    color:var(--ink);
+  }
+  .case-section{ padding:2rem 1.75rem; border-top:1px solid var(--line); }
+  .case-section:first-of-type{ border-top:0; }
+  .case-section h3{ font-size:1.1rem; font-weight:700; margin-bottom:.9rem; }
+  .case-facts{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1.1rem;
+    background:var(--card); border:1px solid var(--line); border-radius:.85rem;
+    padding:1.25rem 1.5rem;
+  }
+  .case-facts .fact-label{ font-size:.7rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-dim); margin-bottom:.25rem; }
+  .case-facts .fact-value{ font-weight:600; font-size:.92rem; }
+  .case-honest{
+    font-size:.85rem; color:var(--ink-dim);
+    border-left:2px solid var(--teal);
+    padding:.6rem 1rem; background:var(--teal-dim); border-radius:0 .5rem .5rem 0;
+  }
+  .case-warning{
+    font-size:.85rem; color:var(--ink);
+    border:1px solid rgba(255,59,31,.4);
+    padding:.75rem 1rem; background:rgba(255,59,31,.1); border-radius:.5rem;
+  }
+  .case-warning strong{ color:var(--flame-1); }
+
+  .feature-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1rem; }
+  .feature-item{
+    display:flex; gap:.75rem; align-items:flex-start;
+    opacity:0; transform:translateY(14px);
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .modal-case.stagger-in .feature-item{ opacity:1; transform:translateY(0); }
+  .feature-item i{ color:var(--teal); font-size:1.1rem; margin-top:.15rem; flex:none; }
+  .feature-item .ft-body{ font-size:.88rem; color:var(--ink-dim); }
+  .feature-item .ft-body strong{ color:var(--ink); display:block; font-size:.92rem; margin-bottom:.1rem; }
+  .modal-case.stagger-in .feature-item:nth-child(1){ transition-delay:.05s; }
+  .modal-case.stagger-in .feature-item:nth-child(2){ transition-delay:.11s; }
+  .modal-case.stagger-in .feature-item:nth-child(3){ transition-delay:.17s; }
+  .modal-case.stagger-in .feature-item:nth-child(4){ transition-delay:.23s; }
+  .modal-case.stagger-in .feature-item:nth-child(5){ transition-delay:.29s; }
+  .modal-case.stagger-in .feature-item:nth-child(6){ transition-delay:.35s; }
+
+  .case-gallery{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.85rem;
+  }
+  .case-gallery figure{
+    margin:0; border-radius:.7rem; overflow:hidden; border:1px solid var(--line);
+    cursor:zoom-in; position:relative; background:var(--card);
+  }
+  .case-gallery img{
+    width:100%; aspect-ratio:16/10.5; object-fit:cover; object-position:top;
+    display:block; transition:transform .4s ease;
+  }
+  .case-gallery figure:hover img{ transform:scale(1.08); }
+  .case-gallery figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    font-size:.72rem; color:var(--ink); background:linear-gradient(0deg, rgba(0,0,0,.75), transparent);
+    padding:1.5rem .6rem .5rem;
+  }
+
+  .case-stats{ display:flex; flex-wrap:wrap; gap:2rem; }
+  .case-stats .cs-num{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.8rem; color:var(--ink); }
+  .case-stats .cs-label{ font-size:.78rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.05em; }
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed; inset:0; z-index:2100;
+    background:rgba(6,8,11,.92); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; visibility:hidden; transition:opacity .25s ease;
+    padding:4rem 1.5rem;
+  }
+  .lightbox.open{ opacity:1; visibility:visible; }
+  .lightbox img{
+    max-width:100%; max-height:100%; border-radius:.6rem;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.7);
+    transform:scale(.96); transition:transform .3s cubic-bezier(.2,.9,.25,1.2);
+  }
+  .lightbox.open img{ transform:scale(1); }
+  .lightbox .lb-caption{
+    position:absolute; bottom:1.75rem; left:0; right:0; text-align:center;
+    color:var(--ink-dim); font-size:.85rem;
+  }
+  .lightbox .lb-close, .lightbox .lb-nav{
+    position:absolute; background:rgba(255,255,255,.06); border:1px solid var(--line);
+    color:var(--ink); width:44px; height:44px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+    transition:background .15s ease, transform .15s ease; cursor:pointer;
+  }
+  .lightbox .lb-close:hover, .lightbox .lb-nav:hover{ background:rgba(255,255,255,.14); transform:scale(1.06); }
+  .lightbox .lb-close{ top:1.5rem; right:1.5rem; }
+  .lightbox .lb-prev{ left:1.5rem; top:50%; transform:translateY(-50%); }
+  .lightbox .lb-next{ right:1.5rem; top:50%; transform:translateY(-50%); }
+
+  @media (max-width: 600px){
+    .lightbox .lb-prev, .lightbox .lb-next{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg fixed-top py-3" aria-label="Primary">
+  <div class="container">
+    <a class="navbar-brand brand-lockup" href="#top">
+      Sarah <span class="brand-flame">Hill</span>
+      <em class="brand-sub">Dragon Fire Design</em>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+        <li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="btn btn-flame btn-sm px-3 rounded-pill" href="#contact">Let's talk</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-9">
+          <span class="eyebrow"><span class="pulse"></span> Full-Stack AI Developer · Birmingham, UK</span>
+          <h1>Code with a <span class="accent">human pulse</span>, not a corporate script.</h1>
+          <p class="lede">
+            I'm Sarah — a full-stack developer who builds software the way I'd want to use it: clear, fast,
+            and free of jargon. No "bespoke solutions tailored to your needs." Just tools that work, for people
+            who actually need them.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="#work" class="btn btn-flame px-4 py-2 rounded-pill">See the work <i class="bi bi-arrow-down-right ms-1"></i></a>
+            <a href="mailto:hantaah21@gmail.com" class="btn btn-outline-teal px-4 py-2 rounded-pill">Got a project? Let's talk</a>
+          </div>
+          <div class="hero-stack-strip mt-4">
+            <span class="stack-pill"><i class="bi bi-filetype-py"></i> Python</span>
+            <span class="stack-pill"><i class="bi bi-diagram-3"></i> Django</span>
+            <span class="stack-pill"><i class="bi bi-filetype-js"></i> JavaScript</span>
+            <span class="stack-pill"><i class="bi bi-lightning-charge-fill"></i> Hackathon-tested</span>
+          </div>
+          <div class="d-flex flex-wrap hero-stats mt-5">
+            <div><div class="num" data-count="4" data-suffix="+">0</div><div class="label">Full-stack apps shipped</div></div>
+            <div><div class="num" data-count="2">0</div><div class="label">Community platforms live</div></div>
+            <div><div class="num" data-count="0">0</div><div class="label">Buzzwords used, ever</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6 reveal">
+          <span class="section-eyebrow">The human bit</span>
+          <h2 class="section-title">The world needs a human touch. That's what I bring to software.</h2>
+          <p class="section-lede mb-3">
+            I'm a full-stack developer obsessed with using code and logic to solve real problems for real people —
+            not hypothetical ones in a slide deck. I handle everything from the front-facing experience to the
+            architecture underneath, so the tools I build aren't just powerful, they're effortless to use.
+          </p>
+          <p class="section-lede">
+            While I've got a solid technical foundation in web systems and AI, I'll always choose real interactivity,
+            clarity, and genuine connection over buzzwords. If a sentence needs a glossary, I haven't finished writing it yet.
+          </p>
+        </div>
+        <div class="col-lg-6 reveal">
+          <div class="row g-4">
+            <div class="col-sm-6">
+              <div class="card-dark">
+                <div class="icon-tile"><i class="bi bi-people-fill"></i></div>
+                <h4 class="h6 fw-bold">Community Uplift</h4>
+                <p class="small text-body-secondary mb-0">Built Cardiff Community Meals to connect local kitchens with vulnerable neighbours.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card-dark">
+                <div class="icon-tile"><i class="bi bi-briefcase-fill"></i></div>
+                <h4 class="h6 fw-bold">Small Business Uplift</h4>
+                <p class="small text-body-secondary mb-0">Free website audits and Project OS — built for entrepreneurs, not enterprises.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card-dark">
+                <div class="icon-tile"><i class="bi bi-lightning-charge-fill"></i></div>
+                <h4 class="h6 fw-bold">Hackathon Energy</h4>
+                <p class="small text-body-secondary mb-0">Thrives under deadline pressure — lifts teammates, unblocks code, keeps momentum.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card-dark">
+                <div class="icon-tile"><i class="bi bi-chat-square-text-fill"></i></div>
+                <h4 class="h6 fw-bold">Zero Jargon Policy</h4>
+                <p class="small text-body-secondary mb-0">If it can't be explained plainly, it doesn't ship until it can.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="band-soft">
+    <div class="container">
+      <div class="text-center mx-auto reveal" style="max-width:640px;">
+        <span class="section-eyebrow">What I bring</span>
+        <h2 class="section-title">Full-stack chops, human-first instincts.</h2>
+        <p class="section-lede mx-auto">Three things I take seriously on every build: the code underneath, the person using it, and the team around me.</p>
+      </div>
+      <div class="row g-4 mt-3">
+        <div class="col-md-4 reveal">
+          <div class="card-dark">
+            <div class="icon-tile"><i class="bi bi-cpu-fill"></i></div>
+            <h3 class="h5 fw-bold">Full-Stack &amp; AI Systems</h3>
+            <p class="text-body-secondary small mb-3">End-to-end builds — frontend clarity, backend robustness, deployed and maintained.</p>
+            <div>
+              <span class="badge-tech">Python</span><span class="badge-tech">Django</span>
+              <span class="badge-tech">JavaScript (ES6+)</span><span class="badge-tech">HTML5</span>
+              <span class="badge-tech">CSS3</span><span class="badge-tech">REST APIs</span>
+              <span class="badge-tech">Git / GitHub</span><span class="badge-tech">Heroku</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal">
+          <div class="card-dark">
+            <div class="icon-tile"><i class="bi bi-palette2"></i></div>
+            <h3 class="h5 fw-bold">Human-Centric Design</h3>
+            <p class="text-body-secondary small mb-3">UI/UX that respects the person on the other end of the screen — no matter their tech literacy.</p>
+            <div>
+              <span class="badge-tech">Intuitive UI/UX</span><span class="badge-tech">Information Architecture</span>
+              <span class="badge-tech">Accessibility</span><span class="badge-tech">Technical Auditing</span>
+              <span class="badge-tech">Clear Docs</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 reveal">
+          <div class="card-dark">
+            <div class="icon-tile"><i class="bi bi-people"></i></div>
+            <h3 class="h5 fw-bold">Team Building &amp; Energy</h3>
+            <p class="text-body-secondary small mb-3">The person who keeps a hackathon team moving and a stakeholder conversation grounded.</p>
+            <div>
+              <span class="badge-tech">Hackathon Mentorship</span><span class="badge-tech">Stakeholder Management</span>
+              <span class="badge-tech">Community Organising</span><span class="badge-tech">Root-Cause Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 reveal">
+        <div>
+          <span class="section-eyebrow">Selected work</span>
+          <h2 class="section-title mb-0">Things I've built and shipped.</h2>
+        </div>
+        <p class="section-lede mb-0">Real projects, real users — not portfolio filler.</p>
+      </div>
+
+      <div class="row g-4 mt-2">
+
+        <div class="col-md-6 reveal">
+          <div class="project-card dragonfire-card">
+            <div class="project-top d-flex align-items-start gap-3">
+              <div class="df-mark" aria-hidden="true">3</div>
+              <div>
+                <span class="project-tag">My studio · sarahjhill.com</span>
+                <h3 class="h4 fw-bold mt-2 mb-0">Dragon Fire Design</h3>
+              </div>
+            </div>
+            <div class="project-body">
+              <p class="ember-quote">"Three seconds is all you get. <strong>I build the website that argues back.</strong>"</p>
+              <p>Everything on <em>this</em> page — the no-jargon rule, the human-first builds — comes from the same studio I run under Dragon Fire Design: hand-built, accessible websites for tradeswomen and women in business who keep getting pre-judged. Free Doubt Audit on every enquiry; you own the site outright, no monthly rent.</p>
+              <div class="mb-3">
+                <span class="badge-tech">UI/UX</span><span class="badge-tech">Copywriting</span><span class="badge-tech">Conversion Design</span>
+              </div>
+              <a class="project-link" href="https://sarahjhill.github.io/sarahjhill-redesign/" target="_blank" rel="noopener">
+                Visit Dragon Fire Design <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 reveal">
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-tag">Product · Dragon Fire Design</span>
+              <h3 class="h4 fw-bold mt-2">The SJH Process <span class="text-body-secondary fw-normal fs-6">(Project OS)</span></h3>
+            </div>
+            <div class="project-body">
+              <p>A twelve-phase project delivery system built on a simple belief: nobody should have to type "any update?" 69 guided tasks, 72 templates, live client sign-in — licensed to other studios for a one-time £39, not another subscription nobody asked for.</p>
+              <div class="mb-3">
+                <span class="badge-tech">Systems Design</span><span class="badge-tech">Client Workflow</span><span class="badge-tech">Templates</span>
+              </div>
+              <a class="project-link" href="https://sarahjhill.github.io/project-os/" target="_blank" rel="noopener">
+                See how it works <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 reveal">
+          <div class="project-card">
+            <div class="project-thumb">
+              <span class="thumb-badge">Solo build</span>
+              <img src="assets/cardiff/cardiff-home.jpg" alt="Cardiff Community Meals homepage, showing a live stats panel and Welsh-first hero copy" loading="lazy">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Community</span>
+              <h3 class="h4 fw-bold mt-2">Cardiff Community Meals</h3>
+            </div>
+            <div class="project-body">
+              <p>Lead developer and designer on a bilingual (Welsh/English) platform connecting vulnerable neighbours with meals, donors, and local Cardiff kitchens. Built for every age group and every level of technical confidence — because the people who need it most shouldn't need a manual.</p>
+              <div class="mb-3">
+                <span class="badge-tech">Full-Stack</span><span class="badge-tech">Bilingual i18n</span><span class="badge-tech">Safeguarding UX</span><span class="badge-tech">Accessibility</span>
+              </div>
+              <button type="button" class="btn-case project-link" data-bs-toggle="modal" data-bs-target="#caseCardiff">
+                View case study <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 reveal">
+          <div class="project-card">
+            <div class="project-thumb">
+              <span class="thumb-badge">4-person team</span>
+              <img src="assets/mission-control/mc-timer.jpg" alt="Mission Control Pomodoro timer interface with countdown ring and mission list" loading="lazy">
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Bootcamp Team Project</span>
+              <h3 class="h4 fw-bold mt-2">Mission Control</h3>
+            </div>
+            <div class="project-body">
+              <p>Co-built a Pomodoro focus timer with a four-developer Agile team under a hard bootcamp deadline. My job wasn't just writing code — it was keeping the team's momentum high and unblocking whoever was stuck, whenever they got stuck.</p>
+              <div class="mb-3">
+                <span class="badge-tech">Agile Teamwork</span><span class="badge-tech">Accessibility</span><span class="badge-tech">Vanilla JS</span>
+              </div>
+              <button type="button" class="btn-case project-link" data-bs-toggle="modal" data-bs-target="#caseMission">
+                View case study <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 reveal">
+          <div class="project-card">
+            <div class="project-thumb thumb-pending">
+              <span class="thumb-badge">Personal build</span>
+              <div class="thumb-pending-inner"><i class="bi bi-images"></i> Screenshots coming soon</div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Personal · Prototype</span>
+              <h3 class="h4 fw-bold mt-2">CarbMate</h3>
+            </div>
+            <div class="project-body">
+              <p>A carb-counting and insulin bolus calculator, built because I'm a type 1 diabetic who found every existing app either too fiddly or paywalled. Free to use, built to learn from as you go.</p>
+              <div class="mb-3">
+                <span class="badge-tech">FastAPI</span><span class="badge-tech">PostgreSQL</span><span class="badge-tech">Safety-First Design</span>
+              </div>
+              <button type="button" class="btn-case project-link" data-bs-toggle="modal" data-bs-target="#caseCarbmate">
+                View case study <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 reveal">
+          <div class="project-card">
+            <div class="project-thumb thumb-pending">
+              <span class="thumb-badge">Solo build</span>
+              <div class="thumb-pending-inner"><i class="bi bi-images"></i> Screenshots coming soon</div>
+            </div>
+            <div class="project-top">
+              <span class="project-tag">Django · Full-Stack Build</span>
+              <h3 class="h4 fw-bold mt-2">CodeStar Blog</h3>
+            </div>
+            <div class="project-body">
+              <p>A full-stack Django blog with authenticated, moderated commenting and a rich-text editor — built past the basic tutorial CRUD into something with real editorial and safeguarding controls.</p>
+              <div class="mb-3">
+                <span class="badge-tech">Django</span><span class="badge-tech">PostgreSQL</span><span class="badge-tech">django-allauth</span>
+              </div>
+              <button type="button" class="btn-case project-link" data-bs-toggle="modal" data-bs-target="#caseBlog">
+                View case study <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey" class="band-soft">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 reveal">
+          <span class="section-eyebrow">How I got here</span>
+          <h2 class="section-title">The journey.</h2>
+          <p class="section-lede">From self-directed study to full-stack delivery — the long way round, and better for it.</p>
+        </div>
+        <div class="col-lg-8 reveal">
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="meta">06/2026 – 10/2026 · In progress</span>
+              <h4>Full-Stack Software Development Programme</h4>
+              <span class="org">Code Institute</span>
+              <p>Engineered and deployed 4 full-stack Django/Python applications. Building depth in Python, JavaScript and Django, applying Agile practices, Heroku deployment, and Git/GitHub workflows.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="meta">10/2015 – 12/2020 · Birmingham, UK</span>
+              <h4>Web Consultant &amp; Full-Stack Developer</h4>
+              <span class="org">Self-Employed Consultancy</span>
+              <p>Founded and ran an independent consultancy delivering end-to-end web engineering for small businesses — turning ambiguous client goals into structured workflows and responsive, well-maintained builds.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="meta">08/2004 – 10/2013 · Birmingham, UK</span>
+              <h4>Independent Student &amp; Systems Researcher</h4>
+              <span class="org">Autonomous Technical Curriculum</span>
+              <p>Rigorous self-directed engineering study, mastering Certified Internet Web Masters (CIW) web and network concepts.</p>
+            </div>
+            <div class="timeline-item">
+              <span class="meta">Education &amp; Certifications</span>
+              <h4>CIW · BTEC · GCSEs</h4>
+              <span class="org">CIW Online · Coleg Glan Hafren · Bryn Celynnog</span>
+              <p>Certified Internet Web Masters (2015) · BTEC National Diploma, Performing Arts (1999) · GCSEs, Wales. Earlier customer-facing roles at O2, Carphone Warehouse and Legal &amp; General.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact">
+    <div class="container">
+      <div class="cta reveal">
+        <span class="section-eyebrow">Let's build something</span>
+        <h2 class="mt-2 mb-3">Got an idea for your business or community project?</h2>
+        <p class="section-lede mx-auto mb-4">Let's connect and make it pop — no jargon, no waiting three weeks for an update.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="mailto:hantaah21@gmail.com" class="btn btn-flame px-4 py-2 rounded-pill"><i class="bi bi-envelope-fill me-2"></i>hantaah21@gmail.com</a>
+          <a href="https://github.com/sarahjhill" target="_blank" rel="noopener" class="btn btn-outline-teal px-4 py-2 rounded-pill"><i class="bi bi-github me-2"></i>GitHub</a>
+          <a href="https://www.linkedin.com/in/sarah-hill-software-developer/" target="_blank" rel="noopener" class="btn btn-outline-teal px-4 py-2 rounded-pill"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- CASE STUDY: Cardiff Community Meals -->
+<div class="modal fade modal-case" id="caseCardiff" tabindex="-1" aria-labelledby="caseCardiffLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="case-tag">Community · Solo project</span>
+          <h2 class="modal-title-main" id="caseCardiffLabel">Cardiff Community Meals</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-hero">
+          <img src="assets/cardiff/cardiff-home.jpg" alt="Cardiff Community Meals homepage with live impact stats and Welsh-first hero copy">
+        </div>
+
+        <div class="case-section">
+          <p class="mb-3">Cardiff has neighbours who need a hot meal — recently discharged from hospital, living with a disability, or just going through it — and a city full of people and local kitchens who'd help if the ask was easy and trustworthy. I designed and built a bilingual (Cymraeg-first) prototype end to end: UX planning, information architecture, safeguarding flows, and the full front-end, solo.</p>
+          <p class="case-honest mb-0"><i class="bi bi-info-circle me-1"></i> This is a working front-end prototype — <code>localStorage</code> stands in for a real database and payments are simulated, by design, so the flows can be demoed and pitched before investing in a backend. The numbers you see in the screenshots are sample data, not live totals.</p>
+        </div>
+
+        <div class="case-section">
+          <div class="case-facts">
+            <div><div class="fact-label">Role</div><div class="fact-value">Lead developer &amp; UX designer</div></div>
+            <div><div class="fact-label">Scope</div><div class="fact-value">10 pages, bilingual EN/CY</div></div>
+            <div><div class="fact-label">Stack</div><div class="fact-value">HTML/CSS/JS, Bootstrap 5</div></div>
+            <div><div class="fact-label">Status</div><div class="fact-value">Phase 0 prototype, live on GitHub Pages</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>What it does</h3>
+          <div class="feature-grid">
+            <div class="feature-item"><i class="bi bi-shield-check"></i><div class="ft-body"><strong>Safeguarding-first requests</strong>Every meal request is reviewed by an admin before it's ever made public — nobody vulnerable gets listed without consent.</div></div>
+            <div class="feature-item"><i class="bi bi-basket"></i><div class="ft-body"><strong>Donate &amp; Book</strong>Donors browse verified, anonymised requests (first name + area only) and fund a specific meal or meal-week.</div></div>
+            <div class="feature-item"><i class="bi bi-graph-up-arrow"></i><div class="ft-body"><strong>Public impact dashboard</strong>Running totals and a top-contributing-business leaderboard, so donors and partners can see the effect in real time.</div></div>
+            <div class="feature-item"><i class="bi bi-shop"></i><div class="ft-body"><strong>Business partner tiers</strong>Local cafés and kitchens get a public profile and Bronze/Silver/Gold recognition as they deliver more meals.</div></div>
+            <div class="feature-item"><i class="bi bi-translate"></i><div class="ft-body"><strong>Welsh-first bilingual UX</strong>A full EN/CY toggle across every page — this is a Cardiff service, and it leads in Cymraeg by default.</div></div>
+            <div class="feature-item"><i class="bi bi-people"></i><div class="ft-body"><strong>Cook &amp; Book rotas</strong>Access-code gated private cooking rotas for closed groups, like a meal train for a new baby.</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>A look inside</h3>
+          <div class="case-gallery" data-gallery="cardiff">
+            <figure><img src="assets/cardiff/cardiff-home.jpg" alt="Homepage hero with live stats" data-caption="Home — live stats, Welsh-first hero"><figcaption>Home — live stats panel</figcaption></figure>
+            <figure><img src="assets/cardiff/cardiff-request.jpg" alt="Request help form" data-caption="Request Help — dignity-first intake form"><figcaption>Request Help — intake form</figcaption></figure>
+            <figure><img src="assets/cardiff/cardiff-donate.jpg" alt="Donate and book a meal, showing verified anonymised requests" data-caption="Donate &amp; Book — verified requests, first-name only"><figcaption>Donate &amp; Book a meal</figcaption></figure>
+            <figure><img src="assets/cardiff/cardiff-impact.jpg" alt="Public impact dashboard with a business leaderboard" data-caption="Impact dashboard — sample data"><figcaption>Impact dashboard</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>Built to grow up</h3>
+          <p class="text-body-secondary small mb-0">The prototype is deliberately backend-free so it can be pitched fast — but I mapped the production path too: Django/Node + PostgreSQL, Stripe Connect for escrow-style payments held until delivery, Twilio/Postmark for delivery confirmations, and a phased rollout from single-partner pilot to city-wide. Safeguarding and UK GDPR considerations were designed in from page one, not bolted on after.</p>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <a href="https://github.com/sarahjhill" target="_blank" rel="noopener" class="btn btn-outline-teal rounded-pill px-3"><i class="bi bi-github me-1"></i> Source on request</a>
+        <button type="button" class="btn btn-flame rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY: Mission Control -->
+<div class="modal fade modal-case" id="caseMission" tabindex="-1" aria-labelledby="caseMissionLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="case-tag">Bootcamp · 4-person Agile team</span>
+          <h2 class="modal-title-main" id="caseMissionLabel">Mission Control</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-hero">
+          <img src="assets/mission-control/mc-missions.jpg" alt="Mission Control Pomodoro timer with a mission added to the task list">
+        </div>
+
+        <div class="case-section">
+          <p class="mb-3">Built as a JavaScript Group Project with three other developers — Rauhan Aziz, Amir Mohammadi, and Davy K. Berry — under a tight bootcamp deadline. We picked a Pomodoro focus timer with an integrated task ("mission") list: a scoped-enough problem to let all four of us demonstrate real UX planning, interactivity, validation, accessibility, and Agile delivery within the time we had.</p>
+          <p class="case-honest mb-0"><i class="bi bi-people me-1"></i> This was genuine team work, not a solo build. My role: shared ownership of features, plus keeping momentum and unblocking teammates when someone got stuck — the thing I bring to every deadline-driven team.</p>
+        </div>
+
+        <div class="case-section">
+          <div class="case-facts">
+            <div><div class="fact-label">Team</div><div class="fact-value">4 developers, MoSCoW-prioritised</div></div>
+            <div><div class="fact-label">Process</div><div class="fact-value">GitHub Projects Kanban + Issues</div></div>
+            <div><div class="fact-label">Stack</div><div class="fact-value">HTML/CSS/JS (ES modules), Bootstrap</div></div>
+            <div><div class="fact-label">Live</div><div class="fact-value"><a href="https://azizr96.github.io/mission-control" target="_blank" rel="noopener">azizr96.github.io/mission-control <i class="bi bi-box-arrow-up-right"></i></a></div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>What it does</h3>
+          <div class="feature-grid">
+            <div class="feature-item"><i class="bi bi-stopwatch"></i><div class="ft-body"><strong>Pomodoro core</strong>Focus / Short Break / Long Break modes with an animated SVG countdown ring and correct auto-transitions.</div></div>
+            <div class="feature-item"><i class="bi bi-list-check"></i><div class="ft-body"><strong>Mission list</strong>Add, complete, delete, and mark-as-current tasks, with empty-input validation and internal scrolling past ~5 items.</div></div>
+            <div class="feature-item"><i class="bi bi-universal-access"></i><div class="ft-body"><strong>Accessibility built in</strong>Full keyboard navigation, ARIA live regions for timer/task state, and WCAG-contrast-checked colour at every pairing — not an afterthought.</div></div>
+            <div class="feature-item"><i class="bi bi-save"></i><div class="ft-body"><strong>Persistence</strong>Missions and custom durations survive a refresh via <code>localStorage</code>.</div></div>
+            <div class="feature-item"><i class="bi bi-kanban"></i><div class="ft-body"><strong>Real Agile process</strong>User stories split by epic across all four owners, tracked on a GitHub Projects board through to done.</div></div>
+            <div class="feature-item"><i class="bi bi-palette"></i><div class="ft-body"><strong>Deliberate theming</strong>A dark, near-black palette with a tomato-red accent — a nod to "Pomodoro" — every pairing checked against WCAG 2.1 contrast math.</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>A look inside</h3>
+          <div class="case-gallery" data-gallery="mission">
+            <figure><img src="assets/mission-control/mc-timer.jpg" alt="Timer view before starting a session" data-caption="The timer, ready to start a session"><figcaption>Timer &amp; mode tabs</figcaption></figure>
+            <figure><img src="assets/mission-control/mc-missions.jpg" alt="Mission list with a task added" data-caption="A mission added to the list"><figcaption>Mission list in action</figcaption></figure>
+            <figure><img src="assets/mission-control/wireframes.png" alt="Balsamiq wireframes for mobile, tablet and desktop" data-caption="Early wireframes — mobile, tablet, desktop"><figcaption>Wireframes (Balsamiq)</figcaption></figure>
+            <figure><img src="assets/mission-control/project-board.png" alt="GitHub Projects Kanban board tracking user stories" data-caption="Our GitHub Projects board — the real backlog"><figcaption>Agile board — GitHub Projects</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <a href="https://azizr96.github.io/mission-control" target="_blank" rel="noopener" class="btn btn-outline-teal rounded-pill px-3"><i class="bi bi-box-arrow-up-right me-1"></i> Try the live app</a>
+        <button type="button" class="btn btn-flame rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY: CarbMate -->
+<div class="modal fade modal-case" id="caseCarbmate" tabindex="-1" aria-labelledby="caseCarbmateLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="case-tag">Personal · Solo prototype</span>
+          <h2 class="modal-title-main" id="caseCarbmateLabel">CarbMate</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="case-section">
+          <p class="case-warning mb-3"><i class="bi bi-exclamation-triangle-fill me-1"></i> <strong>Not a medical device. Not validated.</strong> Do not use this to make real insulin decisions. An app that advises insulin doses is a regulated medical device in the UK, EU and US — this is a prototype, built and shared as one.</p>
+          <p class="mb-0">I'm a type 1 diabetic with disabilities, and I've always found carb counting hard — the apps that exist are either fiddly, expensive, or both. So I built the tool I wanted: type a meal in plain English, search a food database, or photograph the plate, and get a bolus suggestion with the working shown, free for anyone else who might find it useful too.</p>
+        </div>
+
+        <div class="case-section">
+          <div class="case-facts">
+            <div><div class="fact-label">Role</div><div class="fact-value">Solo developer</div></div>
+            <div><div class="fact-label">Stack</div><div class="fact-value">FastAPI, SQLAlchemy, PostgreSQL</div></div>
+            <div><div class="fact-label">Testing</div><div class="fact-value">pytest — dose engine &amp; parser</div></div>
+            <div><div class="fact-label">Status</div><div class="fact-value">Local prototype, tested; not currently deployed</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>What it does</h3>
+          <div class="feature-grid">
+            <div class="feature-item"><i class="bi bi-chat-text"></i><div class="ft-body"><strong>Three ways in, one path out</strong>Plain English, food-database search, or a meal photo — all three converge on the same editable item list before anything is calculated.</div></div>
+            <div class="feature-item"><i class="bi bi-shield-lock"></i><div class="ft-body"><strong>The dose engine is isolated</strong><code>app/dose.py</code> has no database access, no HTTP, no side effects — everything arrives as arguments, so it's testable to the standard a real certification would demand.</div></div>
+            <div class="feature-item"><i class="bi bi-robot"></i><div class="ft-body"><strong>The AI never invents a carb value</strong>The language model only parses text into <code>{food, quantity, unit}</code> — carbohydrate figures always come from the food table, so a hallucinated number can't reach a dose.</div></div>
+            <div class="feature-item"><i class="bi bi-clock-history"></i><div class="ft-body"><strong>Every dose is auditable</strong>Each log entry stores its full input snapshot and the algorithm version, so any past recommendation can be reconstructed later.</div></div>
+            <div class="feature-item"><i class="bi bi-camera"></i><div class="ft-body"><strong>Photo estimates are drafts, not answers</strong>Vision-based meal estimates always carry a confidence band and are never allowed to flow straight into a dose.</div></div>
+            <div class="feature-item"><i class="bi bi-egg-fried"></i><div class="ft-body"><strong>UK-oriented food data</strong>~130 foods with named portions to start, built to grow toward CoFID and Open Food Facts.</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>A look inside</h3>
+          <div class="gallery-pending"><i class="bi bi-images"></i> Screenshots coming soon — this one's still local.</div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-flame rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDY: CodeStar Blog -->
+<div class="modal fade modal-case" id="caseBlog" tabindex="-1" aria-labelledby="caseBlogLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="case-tag">Django · Solo build</span>
+          <h2 class="modal-title-main" id="caseBlogLabel">CodeStar Blog</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="case-section">
+          <p class="mb-0">A full-stack Django blog built past the point most tutorials stop: real account management, a moderation gate on every comment, and a rich-text editor for authors — not just a CRUD demo with a database behind it.</p>
+        </div>
+
+        <div class="case-section">
+          <div class="case-facts">
+            <div><div class="fact-label">Role</div><div class="fact-value">Solo developer</div></div>
+            <div><div class="fact-label">Stack</div><div class="fact-value">Django 4.2, PostgreSQL, Gunicorn</div></div>
+            <div><div class="fact-label">Auth</div><div class="fact-value">django-allauth (social login, MFA)</div></div>
+            <div><div class="fact-label">Status</div><div class="fact-value">Built &amp; previously deployed to Heroku</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>What it does</h3>
+          <div class="feature-grid">
+            <div class="feature-item"><i class="bi bi-file-earmark-richtext"></i><div class="ft-body"><strong>Rich-text authoring</strong>Posts are written with django-summernote, with a Draft/Published status so nothing goes live before it's ready.</div></div>
+            <div class="feature-item"><i class="bi bi-chat-square-dots"></i><div class="ft-body"><strong>Moderated commenting</strong>Every comment needs approval before it's visible — the same review-before-public pattern I used on Cardiff Community Meals.</div></div>
+            <div class="feature-item"><i class="bi bi-person-badge"></i><div class="ft-body"><strong>Real account system</strong>django-allauth handles sign-up, login, social auth and MFA templates — not a hand-rolled auth form.</div></div>
+            <div class="feature-item"><i class="bi bi-hdd-stack"></i><div class="ft-body"><strong>Production-shaped stack</strong>PostgreSQL via dj-database-url, Whitenoise serving static assets, Gunicorn behind it — deployed to Heroku, not just running on <code>manage.py runserver</code>.</div></div>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h3>A look inside</h3>
+          <div class="gallery-pending"><i class="bi bi-images"></i> Screenshots coming soon — redeploy pending.</div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-flame rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close viewer"><i class="bi bi-x-lg"></i></button>
+  <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous screenshot"><i class="bi bi-chevron-left"></i></button>
+  <img id="lbImage" src="" alt="">
+  <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next screenshot"><i class="bi bi-chevron-right"></i></button>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>
+      © <span id="year"></span> Sarah Hill. Built with a human pulse in Birmingham, UK.
+      <span class="footer-df">· Client work lives under <a href="https://sarahjhill.github.io/sarahjhill-redesign/" target="_blank" rel="noopener">Dragon Fire Design</a></span>
+    </div>
+    <div class="d-flex gap-2">
+      <a class="social-icon" href="mailto:hantaah21@gmail.com" aria-label="Email Sarah"><i class="bi bi-envelope-fill"></i></a>
+      <a class="social-icon" href="https://github.com/sarahjhill" target="_blank" rel="noopener" aria-label="Sarah's GitHub"><i class="bi bi-github"></i></a>
+      <a class="social-icon" href="https://www.linkedin.com/in/sarah-hill-software-developer/" target="_blank" rel="noopener" aria-label="Sarah's LinkedIn"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Close mobile nav on link click
+  document.querySelectorAll('#navMain .nav-link').forEach(function(link){
+    link.addEventListener('click', function(){
+      var collapse = bootstrap.Collapse.getInstance(document.getElementById('navMain'));
+      if (collapse) collapse.hide();
+    });
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Animated count-up for hero stats
+  var counters = document.querySelectorAll('[data-count]');
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var duration = 900;
+    var start = null;
+    function frame(ts){
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  if ('IntersectionObserver' in window && counters.length){
+    var countIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          animateCount(entry.target);
+          countIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function(el){ countIo.observe(el); });
+  } else {
+    counters.forEach(function(el){ el.textContent = el.getAttribute('data-count') + (el.getAttribute('data-suffix')||''); });
+  }
+
+  // Case study modals: staggered feature reveal on open
+  document.querySelectorAll('.modal-case').forEach(function(modal){
+    modal.addEventListener('shown.bs.modal', function(){
+      modal.classList.add('stagger-in');
+    });
+    modal.addEventListener('hidden.bs.modal', function(){
+      modal.classList.remove('stagger-in');
+    });
+  });
+
+  // Lightbox gallery
+  (function(){
+    var lightbox = document.getElementById('lightbox');
+    var lbImage = document.getElementById('lbImage');
+    var lbCaption = document.getElementById('lbCaption');
+    var lbClose = document.getElementById('lbClose');
+    var lbPrev = document.getElementById('lbPrev');
+    var lbNext = document.getElementById('lbNext');
+    var currentSet = [];
+    var currentIndex = 0;
+
+    function openLightbox(figures, index){
+      currentSet = figures;
+      currentIndex = index;
+      renderLightbox();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function renderLightbox(){
+      var img = currentSet[currentIndex].querySelector('img');
+      lbImage.src = img.src;
+      lbImage.alt = img.alt || '';
+      lbCaption.textContent = img.getAttribute('data-caption') || img.alt || '';
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function step(dir){
+      currentIndex = (currentIndex + dir + currentSet.length) % currentSet.length;
+      renderLightbox();
+    }
+
+    document.querySelectorAll('.case-gallery').forEach(function(gallery){
+      var figures = Array.prototype.slice.call(gallery.querySelectorAll('figure'));
+      figures.forEach(function(fig, i){
+        fig.addEventListener('click', function(){ openLightbox(figures, i); });
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', function(){ step(-1); });
+    lbNext.addEventListener('click', function(){ step(1); });
+    lightbox.addEventListener('click', function(e){
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e){
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+  })();
+</script>
+</body>
+</html>
