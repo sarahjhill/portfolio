@@ -1,4 +1,4 @@
-# Sarah Hill — Portfolio
+# Sarah J Hill — Portfolio
 
 [![Deployment](https://img.shields.io/badge/deployment-GitHub_Pages-purple)](https://sarahjhill.com/portfolio/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/sarahjhill/portfolio)](https://github.com/sarahjhill/portfolio/commits/main)
@@ -8,7 +8,7 @@
 
 ## Introduction
 
-A single-page developer portfolio for Sarah Hill, Full-Stack AI Developer. It exists to do one job fast: show a recruiter or client the stack, the real projects, and the story — with a human pulse instead of corporate jargon.
+A single-page developer portfolio for Sarah J Hill, Full-Stack AI Developer. It exists to do one job fast: show a recruiter or client the stack, the real projects, and the story — with a human pulse instead of corporate jargon.
 
 The page is branded to sit alongside [Dragon Fire Design](https://sarahjhill.com/), Sarah's freelance studio for tradeswomen and small businesses — same flame/amber palette, same "no bespoke solutions tailored to your needs" voice, same free-of-jargon rule.
 
