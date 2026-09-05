@@ -113,10 +113,19 @@
     padding:9.5rem 0 6rem;
     position:relative;
     overflow:hidden;
+    min-height:640px;
     background:
       radial-gradient(60% 50% at 85% 0%, rgba(255,59,31,.16) 0%, rgba(255,59,31,0) 60%),
       radial-gradient(45% 40% at 10% 20%, rgba(255,176,32,.12) 0%, rgba(255,176,32,0) 60%);
   }
+  .hero .scene{
+    position:absolute; inset:0; z-index:1;
+    pointer-events:none; line-height:0;
+  }
+  .hero .sjh-dragon-canvas{ display:block; width:100%; height:100%; }
+  .hero > .container{ position:relative; z-index:2; }
+  @media (max-width: 900px){ .hero .scene{ opacity:.55; } }
+  @media (max-width: 600px){ .hero{ min-height:560px; } .hero .scene{ opacity:.4; } }
   .eyebrow{
     display:inline-flex; align-items:center; gap:.5rem;
     text-transform:uppercase; letter-spacing:.14em; font-size:.75rem; font-weight:700;
@@ -511,6 +520,7 @@
 
   <!-- HERO -->
   <header class="hero" id="top">
+    <div class="scene" aria-hidden="true"><canvas class="sjh-dragon-canvas"></canvas></div>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-9">
@@ -1093,6 +1103,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/dragon.js" defer></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
