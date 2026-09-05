@@ -163,9 +163,18 @@
   }
   .stack-pill:hover{ border-color:rgba(255,59,31,.4); color:var(--ink); }
   .stack-pill i{ color:var(--flame-2); }
-  .hero-stats{ gap:2.25rem; }
-  .hero-stats .num{ font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:700; color:var(--ink); }
-  .hero-stats .label{ font-size:.8rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; }
+  .hero-stats{ gap:2rem; }
+  .stat-ring-wrap{ display:flex; flex-direction:column; align-items:center; gap:.6rem; width:92px; }
+  .stat-ring{ position:relative; width:88px; height:88px; }
+  .stat-ring svg{ width:100%; height:100%; transform:rotate(-90deg); }
+  .stat-ring circle{ fill:none; stroke-width:7; }
+  .stat-ring .track{ stroke:var(--card); }
+  .stat-ring .fill{ stroke:url(#ringGradient); stroke-linecap:round; }
+  .stat-ring .ring-num{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; color:var(--ink);
+  }
+  .hero-stats .label{ font-size:.72rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.05em; text-align:center; }
 
   section{ padding:5.5rem 0; }
   .section-eyebrow{
@@ -542,11 +551,55 @@
             <span class="stack-pill"><i class="bi bi-filetype-js"></i> JavaScript</span>
             <span class="stack-pill"><i class="bi bi-lightning-charge-fill"></i> Hackathon-tested</span>
           </div>
+          <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+            <defs>
+              <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--flame-1)"></stop>
+                <stop offset="100%" style="stop-color:var(--flame-2)"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
           <div class="d-flex flex-wrap hero-stats mt-5">
-            <div><div class="num" data-count="100" data-suffix="%">0</div><div class="label">Performance</div></div>
-            <div><div class="num" data-count="100" data-suffix="%">0</div><div class="label">Personality &amp; Oomph</div></div>
-            <div><div class="num" data-count="100" data-suffix="%">0</div><div class="label">Dedicated Support</div></div>
-            <div><div class="num" data-count="0" data-suffix="%">0</div><div class="label">Bullshit</div></div>
+            <div class="stat-ring-wrap">
+              <div class="stat-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="fill" cx="50" cy="50" r="42" data-count="100"></circle>
+                </svg>
+                <div class="ring-num" data-count="100" data-suffix="%">0%</div>
+              </div>
+              <div class="label">Performance</div>
+            </div>
+            <div class="stat-ring-wrap">
+              <div class="stat-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="fill" cx="50" cy="50" r="42" data-count="100"></circle>
+                </svg>
+                <div class="ring-num" data-count="100" data-suffix="%">0%</div>
+              </div>
+              <div class="label">Personality &amp; Oomph</div>
+            </div>
+            <div class="stat-ring-wrap">
+              <div class="stat-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="fill" cx="50" cy="50" r="42" data-count="100"></circle>
+                </svg>
+                <div class="ring-num" data-count="100" data-suffix="%">0%</div>
+              </div>
+              <div class="label">Dedicated Support</div>
+            </div>
+            <div class="stat-ring-wrap">
+              <div class="stat-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle class="track" cx="50" cy="50" r="42"></circle>
+                  <circle class="fill" cx="50" cy="50" r="42" data-count="0"></circle>
+                </svg>
+                <div class="ring-num" data-count="0" data-suffix="%">0%</div>
+              </div>
+              <div class="label">Bullshit</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1133,18 +1186,31 @@
     revealEls.forEach(function(el){ el.classList.add('in'); });
   }
 
-  // Animated count-up for hero stats
+  // Animated count-up for hero stats, including the ring gauges
   var counters = document.querySelectorAll('[data-count]');
+  document.querySelectorAll('.stat-ring .fill').forEach(function(c){
+    var r = parseFloat(c.getAttribute('r'));
+    var circumference = 2 * Math.PI * r;
+    c.style.strokeDasharray = circumference;
+    c.style.strokeDashoffset = circumference;
+    c.dataset.circumference = circumference;
+  });
   function animateCount(el){
     var target = parseFloat(el.getAttribute('data-count'));
     var suffix = el.getAttribute('data-suffix') || '';
-    var duration = 900;
+    var isRing = el.tagName && el.tagName.toLowerCase() === 'circle';
+    var circumference = isRing ? parseFloat(el.dataset.circumference) : 0;
+    var duration = 1100;
     var start = null;
     function frame(ts){
       if (!start) start = ts;
       var progress = Math.min((ts - start) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      if (isRing){
+        el.style.strokeDashoffset = circumference * (1 - (target / 100) * eased);
+      } else {
+        el.textContent = Math.round(target * eased) + suffix;
+      }
       if (progress < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -1160,7 +1226,13 @@
     }, { threshold: 0.6 });
     counters.forEach(function(el){ countIo.observe(el); });
   } else {
-    counters.forEach(function(el){ el.textContent = el.getAttribute('data-count') + (el.getAttribute('data-suffix')||''); });
+    counters.forEach(function(el){
+      if (el.tagName && el.tagName.toLowerCase() === 'circle'){
+        el.style.strokeDashoffset = parseFloat(el.dataset.circumference) * (1 - parseFloat(el.getAttribute('data-count')) / 100);
+      } else {
+        el.textContent = el.getAttribute('data-count') + (el.getAttribute('data-suffix')||'');
+      }
+    });
   }
 
   // Case study modals: staggered feature reveal on open
